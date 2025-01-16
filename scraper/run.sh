@@ -1,0 +1,1 @@
+chmod +x /root/.wdm/drivers/chromedriver/linux64/132.0.6834.83/chromedriver-linux64/chromedriver
