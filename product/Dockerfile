@@ -13,6 +13,6 @@ RUN apt-get update && apt-get install -y wget unzip && \
     apt-get clean
 
 # RUN bash run.sh
-
+EXPOSE 5000
 CMD ["python", "main.py"]
 

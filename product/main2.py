@@ -31,3 +31,6 @@
 # driver.quit()
 
 
+from state import ApplicationState
+
+app1 = ApplicationState()

@@ -5,7 +5,7 @@ class IProductFetcher(ABC):
     url = None
     headers = None
     @abstractmethod
-    def scrape(self):
+    def fetch(self):
         pass
 
     @abstractmethod
