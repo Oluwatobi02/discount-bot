@@ -10,6 +10,9 @@ class ProductBuilder:
     def add_price(self, price):
         self.product.set_price(price)
         return self
+    def add_watchers(self, watchers):
+        self.product.set_watchers(watchers)
+        return self
 
     def add_original_price(self, original_price):
         self.product.set_original_price(original_price)

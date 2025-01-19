@@ -96,5 +96,6 @@ def notify_watchers(id):
     product = app.db.get_product(id)
     if product is not None:
         product.notify_watchers("This price has dropped down")
+    return {"message": "Notified watchers", "success": True}
 app.run()
 

@@ -60,5 +60,6 @@ class Product():
             "discount": self.discount,
             "product_condition": self.product_condition,
             "link": self.link,
-            "image": self.image
+            "image": self.image,
+            "watchers": [watcher.id for watcher in self.watchers]
         }

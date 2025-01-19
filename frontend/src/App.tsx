@@ -1,23 +1,67 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './pages/Layout'
-import Home from './pages/Home'
-import SignupPage from './pages/(auth)/Signup'
-import SigninPage from './pages/(auth)/Signin'
-import ResetPasswordPage from './pages/(auth)/Reset'
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import DescriptionIcon from '@mui/icons-material/Description';
+import LayersIcon from '@mui/icons-material/Layers';
+import { ReactRouterAppProvider } from '@toolpad/core/react-router';
+import { Outlet } from 'react-router';
+import { Navigation } from '@toolpad/core/AppProvider';
 function App() {
+  const NAVIGATION: Navigation = [
+    {
+      kind: 'header',
+      title: 'Menu',
+    },
+    {
+      segment: 'home',
+      title: 'Home',
+      icon: <DashboardIcon />,
+    },
+    {
+      segment: 'orders',
+      title: 'Orders',
+      icon: <ShoppingCartIcon />,
+    },
+    {
+      kind: 'divider',
+    },
+    {
+      kind: 'header',
+      title: 'Analytics',
+    },
+    {
+      segment: 'reports',
+      title: 'Reports',
+      icon: <BarChartIcon />,
+      children: [
+        {
+          segment: 'sales',
+          title: 'Sales',
+          icon: <DescriptionIcon />,
+        },
+        {
+          segment: 'traffic',
+          title: 'Traffic',
+          icon: <DescriptionIcon />,
+        },
+      ],
+    },
+    {
+      segment: 'watchlist',
+      title: 'Watchlist',
+      icon: <LayersIcon />,
+    },
+  ];
+  const BRANDING = {
+    // logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
+    title: 'Price Tracker',
+    homeUrl: '/',
+  }
   return (
     <>
-    <Layout>
-
-    <Router>
-      <Routes>
-        <Route path="/dashboard" element={<Home />} />
-        <Route path='sign-in' element={<SigninPage />} />
-        <Route path='sign-up' element={<SignupPage />} />
-        <Route path='reset-password' element={<ResetPasswordPage />} />
-      </Routes>
-    </Router>
-    </Layout>
+      <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING}>
+        <Outlet />
+      </ReactRouterAppProvider>
     </>
   )
 }

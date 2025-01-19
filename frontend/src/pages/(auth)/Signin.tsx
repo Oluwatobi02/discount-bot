@@ -1,4 +1,5 @@
 import { login, signup } from "@/lib/utils";
+import { router } from "@/main";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +8,7 @@ function SigninPage() {
     email: "",
     password: "",
   });
-const navigate = useNavigate()
+
   const handleInputChange = (e: React.FormEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setFormData((prevData) => ({
@@ -23,9 +24,9 @@ const navigate = useNavigate()
     // Add your sign-in logic here
     const res = await login(formData)
     if (res.success) {
-      sessionStorage.setItem("user", res.data.user._id);
+      sessionStorage.setItem("user", res.data.user.id);
       console.log("Login Successful:", res);
-      navigate("/dashboard");
+      router.navigate("/home")
     } else {
       console.error("Login Error:", res.error);
     }
@@ -94,10 +95,10 @@ const navigate = useNavigate()
               Reset it here
             </a>
           </p>
-          <p className="mt-2">
+          <p className="mt-2 cursor-pointer">
             Don’t have an account?{" "}
             <a
-              href="/sign-up"
+              onClick={() => router.navigate("/sign-up")}
               className="text-teal-500 font-semibold hover:underline"
             >
               Sign Up

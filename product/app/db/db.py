@@ -57,8 +57,7 @@ class Database:
         if self.connected:
             collection = self.connection["products"]
             db_product = collection.find_one({"_id": id})
-            product = loads(json_util.dumps(db_product))
-            return self.build_product(product)
+            return self.build_product(db_product)
         
     def get_products(self, skip):
         if self.connected:

@@ -1,4 +1,5 @@
 import { signup } from "@/lib/utils";
+import { router } from "@/main";
 import React, { useState } from "react";
 
 function SignupPage() {
@@ -113,10 +114,10 @@ function SignupPage() {
         </form>
 
         {/* Footer */}
-        <p className="text-center text-gray-600 text-sm mt-6">
+        <p className="text-center text-gray-600 text-sm mt-6 cursor-pointer">
           Already have an account?{" "}
           <a
-            href="/sign-in"
+            onClick={() => router.navigate("/sign-in")}
             className="text-teal-500 font-semibold hover:underline"
           >
             Log in
