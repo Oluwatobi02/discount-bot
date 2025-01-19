@@ -1,5 +1,5 @@
-import { watchProduct } from '@/lib/utils';
-import React, { useState } from 'react';
+import { unWatchProduct, watchProduct } from '@/lib/utils';
+import { useState } from 'react';
 
 export interface ItemCardProp {
   _id: string;
@@ -9,10 +9,11 @@ export interface ItemCardProp {
   original_price: string;
   link: string;
   ref?: any;
+  is_watching?: boolean;
 }
 
-const PriceCard: React.FC<ItemCardProp> = ({ ref, _id,image, name, price, original_price, link }) => {
-  const [isWatching, setIsWatching] = useState(false);
+const PriceCard = ({ ref, _id,image, name, price, original_price, link, is_watching=false }: ItemCardProp) => {
+  const [isWatching, setIsWatching] = useState(is_watching);
 
   const handleWatchClick = async () => {
     // Logic for adding/removing from watchlist
@@ -23,13 +24,17 @@ const PriceCard: React.FC<ItemCardProp> = ({ ref, _id,image, name, price, origin
       if (!data.success) {
         console.error("Failed to watch product:", data.error);
         setIsWatching(false);
-        return;
+        console.log(data);
       }
-      console.log(data);
-    } else {
-      console.log(`Product ${name} removed from watchlist.`);
-    }
+    } else  {
+      const data = await unWatchProduct(_id)
+      if (!data.success) {
+        console.error("Failed to unwatch product:", data.error);
+        setIsWatching(true);
+        console.log(data);
+      }
   };
+}
 
   return (
     <div ref={ref} className="max-w-sm rounded-lg overflow-hidden shadow-lg border border-gray-200 bg-white hover:shadow-2xl transition-shadow duration-300">

@@ -45,9 +45,11 @@ def get_products():
     app.analytics["/products GET"] = app.analytics.get("/products GET", 0) + 1
     try:
         page = request.args.get("page", 1)
+        user_id = request.headers.get("userid")
+        print(user_id)
         skip = (int(page) -1) * 10
         products = app.db.get_products(skip)
-        products = [product.to_dict() for product in products]
+        products = [product.to_dict(user_id=user_id) for product in products]
         meta = {
             "hasMore": len(products) == 10
         }
@@ -68,6 +70,20 @@ def watch_product(id):
         product.add_watcher(user)
         res = app.db.add_watcher_to_product(product.id, user.id)
         return {"message": f"{user.name} is now watching {product.name}", "success": res}
+    
+@app.app.route("/products/<id>/unwatch")
+def unwatch_product(id):
+    user_id = request.headers.get("user")
+    if user_id is None:
+        return "User not found"
+    user = app.db.get_user(user_id)
+    app.analytics["/products/<id>/unwatch GET"] = app.analytics.get("/products/<id>/unwatch GET", 0) + 1
+    product = app.db.get_product(id)
+    if product is not None:
+        product.add_watcher(user)
+        res = app.db.remove_watcher_from_product(product.id, user.id)
+        return {"message": f"{user.name} has been removed from watching {product.name}", "success": res}
+    
 @app.app.route("/sign-up", methods=["POST"])
 def sign_up():
     app.analytics["/sign-up POST"] = app.analytics.get("/sign-up POST", 0) + 1

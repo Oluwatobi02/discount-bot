@@ -24,7 +24,7 @@ function SigninPage() {
     // Add your sign-in logic here
     const res = await login(formData)
     if (res.success) {
-      sessionStorage.setItem("user", res.data.user.id);
+      sessionStorage.setItem("user", res.data.user._id);
       console.log("Login Successful:", res);
       router.navigate("/home")
     } else {

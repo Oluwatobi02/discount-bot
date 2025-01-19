@@ -50,7 +50,8 @@ class Product():
         return f"Product(name={self.name}, price={self.price}, original_price={self.original_price}, currency={self.currency}, discount={self.discount}, product_condition={self.product_condition}, link={self.link}, image={self.image})"
     def __repr__(self):
         return self.__str__()
-    def to_dict(self):
+    def to_dict(self,**kwargs):
+        user_id = kwargs.get("user_id", None)
         return {
             "_id": self.id,
             "name": self.name,
@@ -61,5 +62,6 @@ class Product():
             "product_condition": self.product_condition,
             "link": self.link,
             "image": self.image,
-            "watchers": [watcher.id for watcher in self.watchers]
+            "watchers": [watcher.id for watcher in self.watchers],
+            "is_watching": any([user_id == users.id for users in self.watchers])
         }

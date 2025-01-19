@@ -1,8 +1,6 @@
 import os
 from pymongo.mongo_client import MongoClient
 from pymongo.cursor import Cursor
-from bson import json_util
-from json import loads
 from dotenv import load_dotenv
 load_dotenv("shared.env")
 from app.builders.user_builder import UserBuilder
@@ -53,7 +51,7 @@ class Database:
             collection.insert_one(product.to_dict())
         return False
     
-    def get_product(self, id):
+    def get_product(self, id, **kwargs):
         if self.connected:
             collection = self.connection["products"]
             db_product = collection.find_one({"_id": id})
@@ -115,5 +113,16 @@ class Database:
         if self.connected:
             collection = self.connection["products"]
             collection.update_one({"_id": product_id}, {"$push": {"watchers": user_id}})
+            collection = self.connection["users"]
+            collection.update_one({"_id": user_id}, {"$push": {"watched_products": product_id}})
             return True
         return False
+    def remove_watcher_from_product(self, product_id, user_id):
+        if self.connected:
+            collection = self.connection["products"]
+            collection.update_one({"_id": product_id}, {"$pull": {"watchers": user_id}})
+            collection = self.connection["users"]
+            collection.update_one({"_id": user_id}, {"$pull": {"watched_products": product_id}})
+            return True
+        return False
+    

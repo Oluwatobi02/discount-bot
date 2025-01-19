@@ -4,6 +4,7 @@ import PriceCard, { ItemCardProp } from '@/components/card/PriceCard'
 
 function Home() {
   const [items, setItems] = useState<ItemCardProp[]>([])
+  let user_id = sessionStorage.getItem('user')
   const [pageState, setPageState] = useState({
     error: false,
     message: '',
@@ -21,7 +22,8 @@ function Home() {
         ...prevPageState,
         loading: true
       }))
-      const products = await productFetcher(pageState.page)
+      const products = await productFetcher(pageState.page, user_id= user_id || '')
+      console.log(products)
       setItems((prevItems) => [...prevItems, ...products.data])
       setPageState((prevPageState) => ({
         ...prevPageState,
@@ -70,7 +72,9 @@ function Home() {
               price={item.price}
               original_price={item.original_price}
               link={item.link}
+              is_watching={item.is_watching}
               ref={items.length === index + 1 ? lastPostElementRef : null}
+              
             />
           ))}
         </div>
