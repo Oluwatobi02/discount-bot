@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+overflow-x: hidden;
+}
+
+#parent-scroll-container {
+scrollbar-width: none; /* For Firefox */
+-ms-overflow-style: none; /* For IE */
+}
+
+#parent-scroll-container::-webkit-scrollbar {
+display: none; /* For Chrome, Safari, and Opera */
+}
+
+.grid {
+overflow: hidden;
+max-width: 100%;
+}

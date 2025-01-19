@@ -2,9 +2,10 @@ FROM python:3.10
 
 WORKDIR /app
 
-COPY . /app
-
+COPY requirements.txt .
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+COPY . /app
 
 RUN apt-get update && apt-get install -y wget unzip && \
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
@@ -12,7 +13,6 @@ RUN apt-get update && apt-get install -y wget unzip && \
     rm google-chrome-stable_current_amd64.deb && \
     apt-get clean
 
-# RUN bash run.sh
 EXPOSE 5000
 CMD ["python", "main.py"]
 

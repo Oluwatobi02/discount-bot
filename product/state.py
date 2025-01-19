@@ -2,6 +2,7 @@
 import os
 import threading
 from dotenv import load_dotenv
+from flask_cors import CORS
 from app.db.db import Database
 load_dotenv("shared.env")
 class ApplicationState:
@@ -9,6 +10,7 @@ class ApplicationState:
     state = None
     db = None
     app = None
+    analytics = {}
 
     __lock = threading.Lock()
     
@@ -49,6 +51,7 @@ class ApplicationState:
     def run(self):
         if self.state is None:
             self.db = self.db.connect()
+            CORS(self.app)
             self.db.create_collections()
             self.set_state("running")
             return self.app.run()

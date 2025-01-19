@@ -1,5 +1,7 @@
+
 class Product():
     def __init__(self):
+        self.id = None
         self.name = None
         self.price = None
         self.original_price = None
@@ -8,6 +10,7 @@ class Product():
         self.product_condition = None
         self.link = None
         self.image = None
+        self.watchers = []
         
     def set_name(self, name):
         self.name = name
@@ -32,6 +35,16 @@ class Product():
         
     def set_image(self, image):
         self.image = image
+
+    def add_watcher(self, watcher):
+        self.watchers.append(watcher)
+        
+
+    def notify_watchers(self, message):
+        for watcher in self.watchers:
+            watcher.notify(message)
+    def set_id(self, id):
+        self.id = id
         
     def __str__(self):
         return f"Product(name={self.name}, price={self.price}, original_price={self.original_price}, currency={self.currency}, discount={self.discount}, product_condition={self.product_condition}, link={self.link}, image={self.image})"
@@ -39,6 +52,7 @@ class Product():
         return self.__str__()
     def to_dict(self):
         return {
+            "_id": self.id,
             "name": self.name,
             "price": self.price,
             "original_price": self.original_price,

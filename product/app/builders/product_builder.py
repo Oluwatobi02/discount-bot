@@ -29,6 +29,9 @@ class ProductBuilder:
     def add_image(self, image):
         self.product.set_image(image)
         return self
+    def add_id(self, id):
+        self.product.set_id(id)
+        return self
     
     def build(self):
         return self.product
