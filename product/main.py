@@ -90,5 +90,11 @@ def get_analytics():
     app.analytics["/analytics GET"] = app.analytics.get("/analytics GET", 0) + 1
     return jsonify(app.analytics)
 
+@app.app.route('/products/<id>/notify')
+def notify_watchers(id):
+    app.analytics["/products/<id>/notify GET"] = app.analytics.get("/products/<id>/notify GET", 0) + 1
+    product = app.db.get_product(id)
+    if product is not None:
+        product.notify_watchers("This price has dropped down")
 app.run()
 
