@@ -24,14 +24,13 @@ import { Outlet } from 'react-router';
 export default function Layout() {
 
     return (
-      // preview-start
-
+      <>
       <DashboardLayout>
       <PageContainer>
         <Outlet />
       </PageContainer>
     </DashboardLayout>
+      </>
 
-      // preview-end
     );
   }

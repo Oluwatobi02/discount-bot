@@ -24,14 +24,12 @@ const PriceCard = ({ ref, _id,image, name, price, original_price, link, is_watch
       if (!data.success) {
         console.error("Failed to watch product:", data.error);
         setIsWatching(false);
-        console.log(data);
       }
     } else  {
       const data = await unWatchProduct(_id)
       if (!data.success) {
         console.error("Failed to unwatch product:", data.error);
         setIsWatching(true);
-        console.log(data);
       }
   };
 }

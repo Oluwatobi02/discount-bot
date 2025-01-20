@@ -6,6 +6,7 @@ import LayersIcon from '@mui/icons-material/Layers';
 import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { Outlet } from 'react-router';
 import { Navigation } from '@toolpad/core/AppProvider';
+import Navbar from './components/navbar/Navbar';
 function App() {
   const NAVIGATION: Navigation = [
     {
@@ -60,6 +61,7 @@ function App() {
   return (
     <>
       <ReactRouterAppProvider navigation={NAVIGATION} branding={BRANDING}>
+        <Navbar />
         <Outlet />
       </ReactRouterAppProvider>
     </>

@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request
-from app.factories.product_fetcher_factory import ProductFetcherFactory
+from app.factories.product_factory.product_fetcher_factory import ProductFetcherFactory
 from app.db.db import Database
 from state import ApplicationState
-from app.builders.user_builder import UserBuilder
 flask_app = Flask(__name__)
 
 app = ApplicationState()
@@ -111,7 +110,8 @@ def notify_watchers(id):
     app.analytics["/products/<id>/notify GET"] = app.analytics.get("/products/<id>/notify GET", 0) + 1
     product = app.db.get_product(id)
     if product is not None:
-        product.notify_watchers("This price has dropped down")
-    return {"message": "Notified watchers", "success": True}
+        product.notify_watchers()
+        return {"message": "Notified watchers", "success": True}
+    return {"message": "Product not found", "success": False}
 app.run()
 

@@ -11,6 +11,7 @@ class Product():
         self.link = None
         self.image = None
         self.watchers = []
+
         
     def set_name(self, name):
         self.name = name
@@ -40,9 +41,10 @@ class Product():
         self.watchers.append(watcher)
         
 
-    def notify_watchers(self, message):
+    def notify_watchers(self):
+        noti_message = f"Product {self.name} ('{self.id}') has a price drop"
         for watcher in self.watchers:
-            watcher.notify(message)
+            watcher.notify(noti_message)
     def set_id(self, id):
         self.id = id
         

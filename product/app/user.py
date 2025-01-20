@@ -1,3 +1,4 @@
+from app.factories.notification_factory.notification_factory import NotificationFactory
 class User:
     def __init__(self):
         self.id = None
@@ -23,8 +24,6 @@ class User:
         self.id = id
     def add_watched_product(self, product):
         self.watched_products.append(product)
-    def notify(self, message):
-        print(f"User {self.name} received message: {message}")
     
     def set_name(self, name):
         self.name = name
@@ -36,3 +35,7 @@ class User:
         self.password = password
     def set_watched_products(self, watched_products):
         self.watched_products = watched_products
+    def notify(self, message):
+        notification_client = NotificationFactory.get_notification_client("sms")
+        notification_client.send_message(f"+1{self.phone}", message)
+        print(f"User {self.name} received message: {message}")

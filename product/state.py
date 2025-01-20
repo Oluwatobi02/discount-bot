@@ -57,3 +57,5 @@ class ApplicationState:
             return self.app.run()
         print("Error running app")
         return "nothing"
+    
+    

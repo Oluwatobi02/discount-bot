@@ -1,3 +1,4 @@
+import emitter from "@/lib/emitter";
 import { login, signup } from "@/lib/utils";
 import { router } from "@/main";
 import React, { useState } from "react";
@@ -26,6 +27,7 @@ function SigninPage() {
     if (res.success) {
       sessionStorage.setItem("user", res.data.user._id);
       console.log("Login Successful:", res);
+      emitter.emit("login");
       router.navigate("/home")
     } else {
       console.error("Login Error:", res.error);
