@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from app.interfaces.product_fetcher import IProductFetcher
 from app.builders.product_builder import ProductBuilder
-load_dotenv("shared.env")
+load_dotenv()
 
 class EbayProductFetcher(IProductFetcher):
     url = "https://ebay-data-scraper.p.rapidapi.com/deals/fashion"

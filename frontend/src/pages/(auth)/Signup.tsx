@@ -26,6 +26,7 @@ function SignupPage() {
     const res = await signup(formData)
     if (res.success) {
       console.log("Signup Successful:", res);
+      router.navigate("/sign-in")
     } else {
       console.error("Signup Error:", res.error);
     }

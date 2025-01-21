@@ -7,6 +7,7 @@ import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { Outlet } from 'react-router';
 import { Navigation } from '@toolpad/core/AppProvider';
 import Navbar from './components/navbar/Navbar';
+import LogoNoBackground from './assets/logo-no-background';
 function App() {
   const NAVIGATION: Navigation = [
     {
@@ -54,8 +55,8 @@ function App() {
     },
   ];
   const BRANDING = {
-    // logo: <img src="https://mui.com/static/logo.png" alt="MUI logo" />,
-    title: 'Price Tracker',
+    title: 'Deal Spree',
+    logo: <LogoNoBackground />,
     homeUrl: '/',
   }
   return (

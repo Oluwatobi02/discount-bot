@@ -3,7 +3,9 @@ import { router } from "@/main";
 import emitter from "@/lib/emitter";
 
 export default function Navbar() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  const [isSignedIn, setIsSignedIn] = useState(sessionStorage.getItem("user") !== null && sessionStorage.getItem("user") !== 'undefined' ? true : false
+);
 
   const handleNavigate = (link: string) => {
     router.navigate(link);

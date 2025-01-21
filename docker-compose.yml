@@ -1,34 +1,21 @@
 networks:
   app_network:
 services:
-    # frontend:
-    #     build: ./frontend
-    #     container_name: frontend
-    #     ports:
-    #       - "5173:5173"
-    #     env_file:
-    #      - shared.env
-    #     networks:
-    #      - app_network
+    frontend:
+        build: ./frontend
+        container_name: frontend
+        ports:
+          - "5173:5173"
+        env_file:
+         - shared.env
+        networks:
+         - app_network
     product:
-        build: ./product
-        container_name: product
+        build: ./backend
+        container_name: backend
         ports:
           - "5000:5000"
         env_file:
          - shared.env
         networks:
          - app_network
-
-    # backend:
-    #     build: ./backend
-    #     container_name: backend
-    #     ports:
-    #       - "8081:8081"
-    #     env_file:
-    #      - shared.env
-    #     depends_on:
-    #       - db
-    #     networks:
-    #      - app_network
-  

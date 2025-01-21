@@ -4,7 +4,7 @@ import threading
 from dotenv import load_dotenv
 from flask_cors import CORS
 from app.db.db import Database
-load_dotenv("shared.env")
+load_dotenv()
 class ApplicationState:
     __instance = None
     state = None
@@ -48,13 +48,13 @@ class ApplicationState:
             self.app.route(route)(view_func)
         return self
     
-    def run(self):
+    def initialize(self):
         if self.state is None:
             self.db = self.db.connect()
-            CORS(self.app)
+            # CORS(self.app)
             self.db.create_collections()
             self.set_state("running")
-            return self.app.run()
+            # return self.app.run(port=5000, host="0.0.0.0")
         print("Error running app")
         return "nothing"
     

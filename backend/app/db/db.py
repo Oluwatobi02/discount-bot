@@ -2,9 +2,10 @@ import os
 from pymongo.mongo_client import MongoClient
 from pymongo.cursor import Cursor
 from dotenv import load_dotenv
-load_dotenv("shared.env")
+load_dotenv()
 from app.builders.user_builder import UserBuilder
 from app.builders.product_builder import ProductBuilder
+from app.builders.user_activity_builder import UserActivityBuilder
 class Database:
     __instance = None
     connected = False
@@ -40,6 +41,10 @@ class Database:
                 print(e)
             try:
                 db.create_collection("users")
+            except Exception as e:
+                print(e)
+            try:
+                db.create_collection("users_activity")
             except Exception as e:
                 print(e)
             return self
@@ -125,5 +130,21 @@ class Database:
             collection.update_one({"_id": user_id}, {"$pull": {"watched_products": product_id}})
             return True
         return False
-    
+    def build_user_activity(self, user_activity):
+        user_activity = UserActivityBuilder()\
+                                            .add_ip(user_activity["ip"])\
+                                            .add_device(user_activity["device"])\
+                                            .add_timestamp(user_activity["timestamp"])\
+                                            .add_action(user_activity["action"])\
+                                            .add_metadata(user_activity["metadata"])\
+                                            .add_user(user_activity["user"])\
+                                            .build()
+        return user_activity
+    def insert_user_activity(self, user_activity):
+        if self.connected:
+            collection = self.connection["users_activity"]
+            user_activity = self.build_user_activity(user_activity)
+            collection.insert_one(user_activity.to_dict())
+            return True
+        return False
     

@@ -4,7 +4,7 @@ import clicksend_client
 from clicksend_client import SmsMessage
 from clicksend_client.rest import ApiException
 from dotenv import load_dotenv
-load_dotenv("shared.env")
+load_dotenv()
 class SMSClient:
 
 # Configure HTTP basic authorization: BasicAuth
