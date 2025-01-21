@@ -1,6 +1,6 @@
 export const productFetcher = async(page: Number, user_id: string='') => {
     try {
-        const response = await fetch(`http://192.168.12.164:5000/products?page=${page}`,
+        const response = await fetch(`http://backend:5000/products?page=${page}`,
         {
             method: 'GET',
             headers: {
@@ -19,7 +19,7 @@ export const productFetcher = async(page: Number, user_id: string='') => {
 
 export const signup = async (userData: { name: string; email: string; phone: string; password: string }) => {
     try {
-      const response = await fetch("http://192.168.12.164:5000/sign-up", {
+      const response = await fetch("http://backend:5000/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export const signup = async (userData: { name: string; email: string; phone: str
   
   export const login = async (credentials: { email: string; password: string }) => {
     try {
-      const response = await fetch("http://192.168.12.164:5000/login", {
+      const response = await fetch("http://backend:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -68,7 +68,7 @@ export async function watchProduct(productId: string) {
   const userId = sessionStorage.getItem("user");
   if (!userId) return { success: false, error: new Error("User not logged in.") };
     try {
-        const response = await fetch(`http://192.168.12.164:5000/products/${productId}/watch`, {
+        const response = await fetch(`http://backend:5000/products/${productId}/watch`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export async function unWatchProduct(productId: string) {
   const userId = sessionStorage.getItem("user");
   if (!userId) return { success: false, error: new Error("User not logged in.") };
     try {
-        const response = await fetch(`http://192.168.12.164:5000/products/${productId}/unwatch`, {
+        const response = await fetch(`http://backend:5000/products/${productId}/unwatch`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
