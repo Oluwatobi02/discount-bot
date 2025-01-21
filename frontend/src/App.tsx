@@ -7,6 +7,7 @@ import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { Outlet } from 'react-router';
 import { Navigation } from '@toolpad/core/AppProvider';
 import Navbar from './components/navbar/Navbar';
+import LogoNoText from './assets/Logo-no-text';
 import LogoNoBackground from './assets/logo-no-background';
 function App() {
   const NAVIGATION: Navigation = [
@@ -55,8 +56,8 @@ function App() {
     },
   ];
   const BRANDING = {
-    title: 'Deal Spree',
-    logo: <LogoNoBackground />,
+    title: '',
+    logo: <LogoNoBackground width={350} height={50} />,
     homeUrl: '/',
   }
   return (

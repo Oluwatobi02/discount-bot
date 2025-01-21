@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { router } from "@/main";
 import emitter from "@/lib/emitter";
+import LogoNoBackground from "@/assets/logo-no-background";
+import LogoNoText from "@/assets/Logo-no-text";
 
 export default function Navbar() {
 
@@ -33,7 +35,8 @@ export default function Navbar() {
           tracking-widest transition-transform duration-300 transform hover:scale-105"
           onClick={() => handleNavigate("/")}
         >
-          Price<span className="text-teal-200">Tracker</span>
+          
+          <LogoNoText width={280} height={30}/>
         </div>
 
         {/* Avatar or Sign In/Up */}
