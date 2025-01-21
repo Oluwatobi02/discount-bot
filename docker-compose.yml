@@ -19,3 +19,5 @@ services:
          - shared.env
         networks:
          - app_network
+
+
