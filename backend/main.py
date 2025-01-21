@@ -119,7 +119,7 @@ def sign_up():
     if res:
         user_activity = {
             "user": body["email"],
-            "ip": request.headers.get('X-Forwarded-For', request.remote_addr),
+            "ip": request.headers.get('X-Real-IP', ''),
             "action": "sign-up",
             "timestamp": datetime.now().isoformat(),
             "metadata": {},
