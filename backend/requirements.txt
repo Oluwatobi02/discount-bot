@@ -9,3 +9,4 @@ flask-jwt-extended
 werkzeug
 pymongo[srv]
 clicksend-client
+gunicorn

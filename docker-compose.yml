@@ -10,7 +10,7 @@ services:
          - shared.env
         networks:
          - app_network
-    product:
+    backend:
         build: ./backend
         container_name: backend
         ports:
