@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { router } from "@/main";
 import emitter from "@/lib/emitter";
-import LogoNoBackground from "@/assets/logo-no-background";
 import LogoNoText from "@/assets/Logo-no-text";
 
 export default function Navbar() {

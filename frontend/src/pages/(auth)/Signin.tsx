@@ -1,8 +1,7 @@
 import emitter from "@/lib/emitter";
-import { login, signup } from "@/lib/utils";
+import { login } from "@/lib/utils";
 import { router } from "@/main";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function SigninPage() {
   const [formData, setFormData] = useState({

@@ -7,7 +7,6 @@ import { ReactRouterAppProvider } from '@toolpad/core/react-router';
 import { Outlet } from 'react-router';
 import { Navigation } from '@toolpad/core/AppProvider';
 import Navbar from './components/navbar/Navbar';
-import LogoNoText from './assets/Logo-no-text';
 import LogoNoBackground from './assets/logo-no-background';
 function App() {
   const NAVIGATION: Navigation = [
