@@ -70,7 +70,7 @@ def watch_product(id):
     product = app.db.get_product(id)
     user_activity = {
         "user": user_id,
-        "ip": request.headers.get('X-Real-IP', request.remote_addr),
+        "ip": request.headers.get('X-Forwarded-For', request.remote_addr),
         "action": "watch",
         "timestamp": datetime.now().isoformat(),
         "metadata": {
@@ -135,12 +135,13 @@ def login():
     user = app.db.get_user(body["email"])
     user_activity = {
     "user": user.id,
-    "ip": request.headers.get('X-Forwarded-For', request.remote_addr),
+    "ip": request.headers.get('X-Forwarded-For', ''),
     "action": "login",
     "timestamp": datetime.now().isoformat(),
     "metadata": {},
     "device": request.headers["User-Agent"]
 }
+    
     if user is not None and user.password == body["password"]:
         app.db.insert_user_activity(user_activity)
         return {"message": "Login successful", "user": user.to_dict()}
