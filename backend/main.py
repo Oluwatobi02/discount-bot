@@ -83,7 +83,10 @@ def watch_product(id):
     if product is not None:
         product.add_watcher(user)
         res = app.db.add_watcher_to_product(product.id, user.id)
-        app.db.insert_user_activity(user_activity)
+        try:
+            app.db.insert_user_activity(user_activity)
+        except:
+            pass
         return {"message": f"{user.name} is now watching {product.name}", "success": res}
     
 @app.app.route("/products/<id>/unwatch")
@@ -108,7 +111,10 @@ def unwatch_product(id):
     if product is not None:
         product.add_watcher(user)
         res = app.db.remove_watcher_from_product(product.id, user.id)
-        app.db.insert_user_activity(user_activity)
+        try:
+            app.db.insert_user_activity(user_activity)
+        except:
+            pass
         return {"message": f"{user.name} has been removed from watching {product.name}", "success": res}
     
 @app.app.route("/sign-up", methods=["POST"])
@@ -125,7 +131,10 @@ def sign_up():
             "metadata": {},
             "device": request.headers["User-Agent"]
         }
-        app.db.insert_user_activity(user_activity)
+        try:
+            app.db.insert_user_activity(user_activity)
+        except:
+            pass
         return {"message": "User created"}
     
 @app.app.route("/login", methods=["POST"])
@@ -143,7 +152,10 @@ def login():
 }
     
     if user is not None and user.password == body["password"]:
-        app.db.insert_user_activity(user_activity)
+        try:
+            app.db.insert_user_activity(user_activity)
+        except:
+            pass
         return {"message": "Login successful", "user": user.to_dict()}
     return {"message": "Login failed"}
 

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from app.builders.user_builder import UserBuilder
 from app.builders.product_builder import ProductBuilder
-from app.builders.user_activity_builder import UserActivityBuilder
+from user_activity_builder import UserActivityBuilder
 class Database:
     __instance = None
     connected = False
@@ -131,15 +131,18 @@ class Database:
             return True
         return False
     def build_user_activity(self, user_activity):
-        user_activity = UserActivityBuilder()\
-                                            .add_ip(user_activity["ip"])\
-                                            .add_device(user_activity["device"])\
-                                            .add_timestamp(user_activity["timestamp"])\
-                                            .add_action(user_activity["action"])\
-                                            .add_metadata(user_activity["metadata"])\
-                                            .add_user(user_activity["user"])\
-                                            .build()
-        return user_activity
+        try:
+            user_activity = UserActivityBuilder()\
+                                                .add_ip(user_activity["ip"])\
+                                                .add_device(user_activity["device"])\
+                                                .add_timestamp(user_activity["timestamp"])\
+                                                .add_action(user_activity["action"])\
+                                                .add_metadata(user_activity["metadata"])\
+                                                .add_user(user_activity["user"])\
+                                                .build()
+            return user_activity
+        except:
+            return None
     def insert_user_activity(self, user_activity):
         if self.connected:
             collection = self.connection["users_activity"]
