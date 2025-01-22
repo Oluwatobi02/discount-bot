@@ -3,9 +3,9 @@ from pymongo.mongo_client import MongoClient
 from pymongo.cursor import Cursor
 from dotenv import load_dotenv
 load_dotenv()
-from app.builders.user_builder import UserBuilder
-from app.builders.product_builder import ProductBuilder
-from app.builders.user_activity_builder import UserActivityBuilder
+from src.builders.user_builder import UserBuilder
+from src.builders.product_builder import ProductBuilder
+from src.builders.user_activity_builder import UserActivityBuilder
 class Database:
     __instance = None
     connected = False

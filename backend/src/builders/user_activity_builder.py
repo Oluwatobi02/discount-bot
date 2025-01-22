@@ -1,4 +1,4 @@
-from app.user_activity import UserActivity
+from src.user_activity import UserActivity
 import ipaddress
 class UserActivityBuilder:
     def __init__(self):

@@ -1,8 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
-from app.interfaces.product_fetcher import IProductFetcher
-from app.builders.product_builder import ProductBuilder
+from src.interfaces.product_fetcher import IProductFetcher
+from src.builders.product_builder import ProductBuilder
 load_dotenv()
 
 class EbayProductFetcher(IProductFetcher):

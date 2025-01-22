@@ -1,4 +1,4 @@
-from app.product import Product
+from src.product import Product
 class ProductBuilder:
     def __init__(self):
         self.product = Product()

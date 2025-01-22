@@ -1,4 +1,4 @@
-from app.user import User
+from src.user import User
 class UserBuilder:
     def __init__(self):
         self.user = User()

@@ -1,5 +1,5 @@
-from app.factories.notification_factory.email import EmailClient
-from app.factories.notification_factory.sms import SMSClient
+from src.factories.notification_factory.email import EmailClient
+from src.factories.notification_factory.sms import SMSClient
 
 class NotificationFactory:
     @staticmethod

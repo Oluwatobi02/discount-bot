@@ -1,4 +1,4 @@
-from app.lib.ip_addr import get_ip_info
+from src.lib.ip_addr import get_ip_info
 
 class UserActivity:
     def __init__(self):

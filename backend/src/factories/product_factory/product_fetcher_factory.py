@@ -1,5 +1,5 @@
-from app.factories.product_factory.amazon_fetcher import AmazonProductFetcher
-from app.factories.product_factory.ebay_fetcher import EbayProductFetcher
+from src.factories.product_factory.amazon_fetcher import AmazonProductFetcher
+from src.factories.product_factory.ebay_fetcher import EbayProductFetcher
 
 class ProductFetcherFactory:
     @staticmethod

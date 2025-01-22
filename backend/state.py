@@ -3,7 +3,7 @@ import os
 import threading
 from dotenv import load_dotenv
 from flask_cors import CORS
-from app.db.db import Database
+from src.db.db import Database
 load_dotenv()
 class ApplicationState:
     __instance = None

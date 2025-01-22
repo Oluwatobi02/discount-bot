@@ -1,8 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
-from app.factories.product_factory.product_fetcher_factory import ProductFetcherFactory
-from app.db.db import Database
+from src.factories.product_factory.product_fetcher_factory import ProductFetcherFactory
+from src.db.db import Database
 from state import ApplicationState
 
 flask_app = Flask(__name__)
