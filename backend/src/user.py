@@ -1,4 +1,4 @@
-from app.factories.notification_factory.notification_factory import NotificationFactory
+from src.factories.notification_factory.notification_factory import NotificationFactory
 class User:
     def __init__(self):
         self.id = None
