@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 from app.builders.user_builder import UserBuilder
 from app.builders.product_builder import ProductBuilder
-from user_activity_builder import UserActivityBuilder
+from backend.app.builders.user_activity_builder import UserActivityBuilder
 class Database:
     __instance = None
     connected = False
