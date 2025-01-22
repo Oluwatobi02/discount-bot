@@ -99,7 +99,7 @@ def unwatch_product(id):
     product = app.db.get_product(id)
     user_activity = {
     "user": user_id,
-    "ip": request.headers.get('X-Real-IP', request.remote_addr),
+    "ip": request.headers.get('X-Forwarded-For', request.remote_addr),
     "action": "unwatch",
     "timestamp": datetime.now().isoformat(),
     "metadata": {
@@ -125,7 +125,7 @@ def sign_up():
     if res:
         user_activity = {
             "user": body["email"],
-            "ip": request.headers.get('X-Real-IP', ''),
+            "ip": request.headers.get('X-Forwarded-For', ''),
             "action": "sign-up",
             "timestamp": datetime.now().isoformat(),
             "metadata": {},
