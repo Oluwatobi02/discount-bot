@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from datetime import datetime
 from src.factories.product_factory.product_fetcher_factory import ProductFetcherFactory
+from src.lib.products import check_prices
+import threading
 from src.db.db import Database
 from state import ApplicationState
 
@@ -16,7 +18,12 @@ app.set_app(flask_app)
 def index():
     app.analytics["/ GET"] = app.analytics.get("/ GET", 0) + 1
     return "Hello World"
-
+@app.app.route('/checkprices')
+def check_prices_route():
+    app.analytics["/checkprices GET"] = app.analytics.get("/checkprices GET", 0) + 1
+    t1 = threading.Thread(target=check_prices)
+    t1.start()
+    return "Checking prices"
 @app.app.route('/products', methods=["POST"])
 def create_product():
     try:

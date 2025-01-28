@@ -151,3 +151,17 @@ class Database:
             return True
         return False
     
+    def update_product_price(self, product_id, price):
+        if self.connected:
+            collection = self.connection["products"]
+            collection.update_one({"_id": product_id}, {"$set": {"price": str(price)}})
+            return True
+        
+    def get_watched_products(self):
+        if self.connected:
+            collection = self.connection["products"]
+            db_products : Cursor = collection.find({"watchers": {"$exists": True, "$ne": []}})
+            products = list(db_products)
+            products = [self.build_product(product) for product in products]
+            return products
+        return None
