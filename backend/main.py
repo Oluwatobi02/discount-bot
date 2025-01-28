@@ -6,6 +6,7 @@ from src.lib.products import check_prices
 import threading
 from src.db.db import Database
 from state import ApplicationState
+import random
 
 flask_app = Flask(__name__)
 CORS(flask_app)
@@ -59,6 +60,7 @@ def get_products():
         skip = (int(page) -1) * 10
         products = app.db.get_products(skip)
         products = [product.to_dict(user_id=user_id) for product in products]
+        random.shuffle(products)
         meta = {
             "hasMore": len(products) == 10
         }

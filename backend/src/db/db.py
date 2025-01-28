@@ -53,8 +53,11 @@ class Database:
     def insert_product(self, product):
         if self.connected:
             collection = self.connection["products"]
-            collection.insert_one(product.to_dict())
-        return False
+            try:
+                collection.insert_one(product.to_dict())
+            except Exception as e:
+                print(e)
+                return False
     
     def get_product(self, id, **kwargs):
         if self.connected:
@@ -165,3 +168,10 @@ class Database:
             products = [self.build_product(product) for product in products]
             return products
         return None
+    
+    def update_product_image(self, product_id, image):
+        if self.connected:
+            collection = self.connection["products"]
+            collection.update_one({"_id": product_id}, {"$set": {"image": image}})
+            return True
+        

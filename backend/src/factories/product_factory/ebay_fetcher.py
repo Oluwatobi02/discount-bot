@@ -1,3 +1,4 @@
+import random
 import requests
 import os
 from dotenv import load_dotenv
@@ -51,8 +52,7 @@ class EbayProductFetcher(IProductFetcher):
                             .add_image(product["image"])\
                             .build()
         return item
-
     def get_product_price(self, product):
         res = requests.get(f"https://ebay-data-scraper.p.rapidapi.com/products/{product.id}", headers=self.headers)
         data = res.json()[0]
-        return float(data['price'][5:])
+        return float(data['price'][4:]), random.choice(data['product_images'])

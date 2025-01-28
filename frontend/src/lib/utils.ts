@@ -1,5 +1,5 @@
 // const url = `https://projectspace.tech'
-const url = 'http://backend:5000'
+const url = 'http://localhost:5000'
 export const productFetcher = async(page: Number, user_id: string='') => {
     try {
         const response = await fetch(`${url}/products?page=${page}`,

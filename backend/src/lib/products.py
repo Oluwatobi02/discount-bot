@@ -10,9 +10,10 @@ def check_prices():
 
             for product in products:
                 product_fetcher = ProductFetcherFactory.get_product_fetcher('ebay')
-                price = product_fetcher.get_product_price(product)
+                price, image = product_fetcher.get_product_price(product)
                 if price < float(product.price):
                     app.db.update_product_price(product.id, price)
+                    app.db.update_product_image(product.id, image)
                     requests.get(f"http://localhost:5000/products/{product.id}/notify")
         except Exception as e:
             print(e)
