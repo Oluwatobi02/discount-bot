@@ -25,14 +25,19 @@ class User:
     def add_watched_product(self, product):
         self.watched_products.append(product)
     
+
     def set_name(self, name):
         self.name = name
+
     def set_email(self, email):
         self.email = email
+
     def set_phone(self, phone):
         self.phone = phone
+
     def set_password(self, password):
         self.password = password
+
     def set_watched_products(self, watched_products):
         self.watched_products = watched_products
     def notify(self, message):

@@ -2,7 +2,8 @@ import random
 import requests
 import os
 from dotenv import load_dotenv
-from src.interfaces.product_fetcher import IProductFetcher
+from src.factories.product_factory.interfaces.product_fetcher import IProductFetcher
+
 from src.builders.product_builder import ProductBuilder
 load_dotenv()
 

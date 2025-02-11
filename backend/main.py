@@ -19,11 +19,13 @@ app.set_app(flask_app)
 def index():
     app.analytics["/ GET"] = app.analytics.get("/ GET", 0) + 1
     return "Hello World"
+
 @app.app.route('/checkprices')
 def check_prices_route():
     app.analytics["/checkprices GET"] = app.analytics.get("/checkprices GET", 0) + 1
     t1 = threading.Thread(target=check_prices)
     t1.start()
+    
     return "Checking prices"
 @app.app.route('/products', methods=["POST"])
 def create_product():
@@ -183,6 +185,14 @@ def notify_watchers(id):
     return {"message": "Product not found", "success": False}
 
 
+
+from src.factories.notification_factory.sms import SMSClient
+sms_client = SMSClient()
+
+@app.app.route('/contacts/list/', methods=["POST"])
+def add_new_contact():
+    res = sms_client.create_new_list('dealspree')
+    return jsonify({'data': res})  
 
 
 app.initialize()

@@ -1,4 +1,4 @@
-from src.interfaces.product_fetcher import IProductFetcher
+from src.factories.product_factory.interfaces.product_fetcher import IProductFetcher
 
 class AmazonProductFetcher(IProductFetcher):
 
